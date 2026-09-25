@@ -12,6 +12,17 @@ measurement sequence at a time. Monte Carlo experiment drivers, saved experiment
 results, cross-method plotting scripts, and PMB approximations are excluded.
 The random sampling inside the Gibbs filter and scenario generator is retained.
 
+## Related Publication
+
+This repository accompanies the paper:
+
+**[Efficient Implementations of Extended Object PMBM Filters with Blocked Gibbs Sampling](https://arxiv.org/abs/2604.24010)**  
+Yuxuan Xia, &Aacute;ngel F. Garc&iacute;a-Fern&aacute;ndez, and Lennart Svensson.
+
+The paper has been accepted for publication in *IEEE Transactions on Aerospace
+and Electronic Systems*. A preprint is available on arXiv as
+[arXiv:2604.24010](https://arxiv.org/abs/2604.24010).
+
 ## Requirements
 
 - MATLAB, tested with R2026a.
