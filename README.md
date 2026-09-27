@@ -174,6 +174,15 @@ empty and singleton scans, probability normalization, GGIW updates, and
 categorical sampling edge cases. They do not run Monte Carlo performance
 experiments.
 
+Extent-update regression tests compare both GGIW update kernels with an
+independent principal-matrix-square-root reference, including predictive
+likelihoods, cache refresh, and the Bernoulli and PPP call paths. The centroid
+contribution is `N = (A*eps)*(A*eps)'`, where
+`A = sqrtm(Xhat)/sqrtm(S)` (with the existing innovation regularization).
+The shared helper evaluates the 2D principal roots without general `sqrtm`.
+This corrects the former `A = Xhat/S` transform; previously generated results
+must be rerun to reflect the corrected extent updates and association weights.
+
 ## Layout
 
 - `main.m`: runnable demonstration.

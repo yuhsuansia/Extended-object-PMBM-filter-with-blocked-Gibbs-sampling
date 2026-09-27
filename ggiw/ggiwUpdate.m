@@ -32,12 +32,11 @@ updatedGGIW.mean = predictedGGIW.mean + K * eps;
 Pnew = P - K * HP;
 updatedGGIW.cov = 0.5 * (Pnew + Pnew.');
 
-u = LS \ eps;
-u = LS.' \ u;
-
 % N captures the centroid innovation, while Z captures within-group scatter.
-Xu = Xhat * u;
-N  = Xu * Xu.';
+% Use principal square roots: Xhat/S would apply the covariance scale twice.
+Aextent = ggiwExtentTransform(Xhat, S + 1e-9*eye(size(S)));
+innovationExtent = Aextent * eps;
+N = innovationExtent * innovationExtent.';
 
 updatedGGIW.v = predictedGGIW.v + m;
 Vnew = predictedGGIW.V + N + Z;

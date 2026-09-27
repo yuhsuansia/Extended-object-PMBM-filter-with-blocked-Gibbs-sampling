@@ -32,12 +32,11 @@ m1 = m0 + K*eps;
 P1 = P0 - K*HP;
 P1 = 0.5*(P1 + P1.');
 
-u = LS \ eps;
-u = LS.' \ u;
-
 % Rank-1 extent innovation from the centered measurement residual.
-Xu = Xhat * u;
-N  = Xu * Xu.';
+% Match the general update's principal-square-root covariance transform.
+Aextent = ggiwExtentTransform(Xhat, S + 1e-9*eye(2));
+innovationExtent = Aextent * eps;
+N = innovationExtent * innovationExtent.';
 N  = 0.5*(N + N.');
 
 v1 = v + 1;
